@@ -82,7 +82,7 @@ def run_measurement(
             fft_spectrum = casr.calc_fourier_transform(params,data)[mask_index:]
             print("Fourier sepctrum calculation successful")
             prominence = np.median(fft_spectrum) * 5
-            mask, peak_info = casr.noise_only_mask(frequencies, fft_spectrum, prominence=prominence, rel_pad=10, width_hz=1)
+            #mask, peak_info = casr.noise_only_mask(frequencies, fft_spectrum, prominence=prominence,rel_pad=10, width_hz=1)
             idx, freq, amp = casr.find_peak_near(frequencies, fft_spectrum, 500)
             print("mask calculation successful and peak fouund")
             sensitivity, snr, std = casr.calc_sensitivity(params, data, window_hz=50, return_snr=True, prominence=prominence, mode = "only_calibration_peak", mask_index = 5)
@@ -106,7 +106,7 @@ def run_measurement(
                     f"sensitivity={sensitivity*1e12:.1f} pT/√Hz, \n"
                 )
             )
-            ax_ratio.plot(frequencies[mask], fft_spectrum[mask], label="noise")
+            #ax_ratio.plot(frequencies[mask], fft_spectrum[mask], label="noise")
             ax_ratio.set_title("CASR Spectrum")
             ax_ratio.set_xlabel("Frequency [Hz]")
             ax_ratio.set_ylabel("FFT amplitude [a.u.]")
