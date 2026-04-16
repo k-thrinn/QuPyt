@@ -43,6 +43,7 @@ def run_measurement(
         sleep(0.5)
         while True:
             # timestamp for this run
+            print("went into loop")
             mid = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
             run_name = f"{params['experiment_type']}_{mid}"
             print(f"\n=== Starting measurement: {run_name} ===")
@@ -68,13 +69,17 @@ def run_measurement(
             # --- Real-time plotting ---
             # data_container.data shape: (2, N, 1, 1) depending whether it is dynamic steps or not
             data_to_plot = data_container.data
-
+            
             rabi_steps = params["sensor"]["config"]["number_measurements"]
-            av = params["averages"]
+            av = float(params["averages"])
+            print("averages extracted")
             x = np.array(microwave_list(params))*1e3  # in ns
+            print("After microwave list")
             mask_index = 2
             x = x[mask_index:] # cutting off the first 4 datapoints, this depends on the setup
+            print("Before average division")
             ref = data_to_plot[0].flatten()/av
+            print("First division in loop done")
             ref = ref[mask_index:]  # cutting off the first 4 datapoints, this depends on the setup
             mess = data_to_plot[1].flatten()/av
             mess = mess[mask_index:]  # cutting off the first 4 datapoints, this depends on the setup
@@ -99,6 +104,7 @@ def run_measurement(
             fig.suptitle(f"File: {params['filename']} | Light level: {light_level:.1f} mV | Contrast: {contrast:.4f} | Rabi duration: {rabi_duration:.1f} ns")
             fig.canvas.draw()
             plt.pause(0.01)
+            print("Finished plotting")
             # --- End plotting ---
 
             # don't save data for now when we run in continous mode
