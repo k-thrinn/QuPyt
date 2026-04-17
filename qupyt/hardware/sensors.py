@@ -1221,6 +1221,9 @@ class GageDAQ(Sensor):
     def _set_samples(self, samples: int) -> None:
         self.samples_per_trace = int(samples)
         self.roi_shape = [self.samples_per_trace]
+    
+    def _set_timeout(self, timeout: float) -> None:
+        self.timeout = float(timeout)
 
     def _set_trigger_mode(self, trigger_mode: str) -> None:
         self.trigger_mode = str(trigger_mode)
