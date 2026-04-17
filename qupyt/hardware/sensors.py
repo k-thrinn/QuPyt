@@ -1222,9 +1222,6 @@ class GageDAQ(Sensor):
         self.samples_per_trace = int(samples)
         self.roi_shape = [self.samples_per_trace]
 
-    def _set_timeout(self, timeout: float) -> None:
-        self.timeout = float(timeout)
-
     def _set_trigger_mode(self, trigger_mode: str) -> None:
         self.trigger_mode = str(trigger_mode)
 
@@ -1275,7 +1272,6 @@ class GageDAQ(Sensor):
                 "command": "acquire",
                 "samples_per_trace": self.samples_per_trace,
                 "number_measurements": self.number_measurements,
-                "timeout_s": self.timeout,
                 "trigger_mode": self.trigger_mode,
             }
         )
