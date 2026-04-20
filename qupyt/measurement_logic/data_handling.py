@@ -127,7 +127,7 @@ class Data(ConfigurationMixin):
 
     def update_data(self, data: np.ndarray, ps_step: int, dynamic_step: int, avg_step: int) -> None:
         if self.save_in_chunks != 0 and avg_step % self.save_in_chunks == 0:
-            self._update_data_full(data, dynamic_step)
+            self._update_data_full(data, ps_step, dynamic_step)
             self.save(self.filename[0] + "_ch-" +f"{avg_step}_" + self.filename[1])  # also save the main file to have the latest data
             self.create_array()
             return None

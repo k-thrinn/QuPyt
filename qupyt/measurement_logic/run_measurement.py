@@ -35,6 +35,8 @@ def run_measurement(
         data_container = Data(params["data"])
         data_container.set_dims_from_sensor(sensor)
         data_container.create_array()
+        params["filename"] = params["experiment_type"] + "_" + mid
+        data_container.set_filename(params["filename"])
 
         for ps_itervalue in tqdm(range(ps_iterator_size)):
             synchroniser.open()
@@ -44,7 +46,6 @@ def run_measurement(
             sleep(0.1)
             sensor.open()
             sleep(0.5)
-            params["filename"] = params["experiment_type"] + "_" + mid
             for itervalue in tqdm(range(iterator_size), leave=(ps_itervalue == ps_iterator_size - 1)):
                 dynamic_devices.next_dynamic_step()
                 sleep(0.1)
