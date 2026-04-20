@@ -44,6 +44,7 @@ def run_measurement(
             sleep(0.1)
             sensor.open()
             sleep(0.5)
+            params["filename"] = params["experiment_type"] + "_" + mid
             for itervalue in tqdm(range(iterator_size), leave=(ps_itervalue == ps_iterator_size - 1)):
                 dynamic_devices.next_dynamic_step()
                 sleep(0.1)
