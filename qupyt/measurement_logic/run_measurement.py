@@ -37,7 +37,7 @@ def run_measurement(
         data_container.create_array()
         params["filename"] = params["experiment_type"] + "_" + mid
         data_container.set_filename(params["filename"])
-
+        print("Started file name: " + data_container.filename)
         for ps_itervalue in tqdm(range(ps_iterator_size)):
             synchroniser.open()
             synchroniser.stop()
@@ -53,7 +53,7 @@ def run_measurement(
                         range(int(params["averages"])),
                         leave=(itervalue == (iterator_size - 1)) and (ps_itervalue == (ps_iterator_size - 1)),
                 ):
-
+                    print(f"ps_step: {ps_itervalue}, dynamic_step: {dynamic_devices.current_dynamic_step}, avg: {avg}")
                     sleep(float(params.get("sleep", 0)))
                     data = sensor.acquire_data(synchroniser)
                     data_container.update_data(data, ps_itervalue, itervalue, avg)
