@@ -69,6 +69,7 @@ def run_measurement(
         params["qupyt_version"] = qupyt_version
         if data_container.save_in_chunks == 0:
             data_container.save(params["filename"])
+        print(params.keys())
         with open(params["filename"] + ".yaml", "w", encoding="utf-8") as file:
             yaml.dump(params, file)
         del data_container
