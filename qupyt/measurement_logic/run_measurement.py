@@ -31,12 +31,13 @@ def run_measurement(
     ps_iterator_size = int(params.get("pulse_sequence_steps", 1))
     mid = datetime.today().strftime("%Y-%m-%d-%H-%M-%S")
     return_status = "all_fail"
+    print("before try")
     try:
         data_container = Data(params["data"])
         data_container.set_dims_from_sensor(sensor)
         data_container.create_array()
         params["filename"] = params["experiment_type"] + "_" + mid
-        data_container.set_filename(params["filename"])
+        data_container.set_filename((params["experiment_type"],mid))
         print("Started file name: " + data_container.filename)
         for ps_itervalue in tqdm(range(ps_iterator_size)):
             synchroniser.open()
