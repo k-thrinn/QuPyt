@@ -1207,6 +1207,8 @@ class GageDAQ(Sensor):
         self.attribute_map["samples_per_trace"] = self._set_samples
         self.attribute_map["timeout"] = self._set_timeout
         self.attribute_map["trigger_mode"] = self._set_trigger_mode
+        self.attribute_map["input_range_mvpp"] = self._set_input_range_mvpp
+        self.attribute_map["sample_rate"] = self._set_sample_rate
 
         if configuration is not None:
             self._update_from_configuration(configuration)
@@ -1227,6 +1229,12 @@ class GageDAQ(Sensor):
 
     def _set_trigger_mode(self, trigger_mode: str) -> None:
         self.trigger_mode = str(trigger_mode)
+
+    def _set_input_range_mvpp(self, input_range_mvpp: int) -> None:
+        self.input_range_mvpp = int(input_range_mvpp)
+
+    def _set_sample_rate(self, sample_rate: int) -> None: 
+        self.sample_rate = int(sample_rate)
 
     # network communication methods
     def _send_request(self, request: Dict[str, Any]) -> Dict[str, Any]:
@@ -1276,6 +1284,8 @@ class GageDAQ(Sensor):
                 "samples_per_trace": self.samples_per_trace,
                 "number_measurements": self.number_measurements,
                 "trigger_mode": self.trigger_mode,
+                "input_range_mvpp": self.input_range_mvpp,
+                "sample_rate": self.sample_rate, 
             }
         )
 
