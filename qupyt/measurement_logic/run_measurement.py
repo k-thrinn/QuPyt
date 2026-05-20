@@ -38,7 +38,7 @@ def run_measurement(
         synchroniser.stop()
         synchroniser.load_sequence()
         synchroniser.run()
-        sleep(0.1)
+        sleep(5) # to equilibrate the system before starting the measurement loop
         sensor.open()
         sleep(0.5)
         while True:
