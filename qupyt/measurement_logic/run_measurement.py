@@ -38,7 +38,7 @@ def run_measurement(
         synchroniser.stop()
         synchroniser.load_sequence()
         synchroniser.run()
-        sleep(0.1)
+        sleep(5) # for eqilibration of the system before measurement
         sensor.open()
         sleep(0.5)
         params["filename"] = params["experiment_type"] + "_" + mid
