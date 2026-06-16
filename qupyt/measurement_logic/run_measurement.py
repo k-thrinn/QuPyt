@@ -69,8 +69,8 @@ def run_measurement(
             # data_container.data shape: (2, N, 1, 1) depending whether it is dynamic steps or not  # shape: (2, 1,N,1)+
             data_to_plot = data_container.data
             n_meas = params["sensor"]["config"]["number_measurements"]
-            ref = data_to_plot[0].flatten()/(n_meas/2)
-            mess = data_to_plot[1].flatten()/(n_meas/2)
+            ref = data_to_plot[1].flatten()/(n_meas/2)
+            mess = data_to_plot[0].flatten()/(n_meas/2)
             N_dyn = int(params['dynamic_steps'])
             min_f = float(params['dynamic_devices']['mw_source']['config']['frequency'][0]) /1e9
             max_f = float(params['dynamic_devices']['mw_source']['config']['frequency'][1]) /1e9
