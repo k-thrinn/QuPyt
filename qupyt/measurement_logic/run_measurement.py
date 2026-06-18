@@ -83,6 +83,7 @@ def run_measurement(
             ax.plot(x_ESR, mess, label="Measurement")
             ax.set_title(f"Measurement: {run_name}")
             ax.legend()
+            ax.grid(True, which='both', linestyle=':', linewidth=0.8, color='gray', alpha=0.7)
             fig.canvas.draw()
             plt.pause(0.01)
 
@@ -95,6 +96,7 @@ def run_measurement(
             ax_ratio.clear()
             ax_ratio.plot(x_ESR, ratio, label="Ratio (Measurement/Reference)")
             ax_ratio.set_title(f"f = {min_freq:.4f} GHz, Light level: {light_level:.1f} mV, Contrast: {contrast:.4f}")
+            ax_ratio.grid(True, which='both', linestyle=':', linewidth=0.8, color='gray', alpha=0.7)
             ax_ratio.legend()
             fig.canvas.draw()
             plt.pause(0.01)
