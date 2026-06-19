@@ -78,10 +78,10 @@ def run_measurement(
             mask_index = 2
             x = x[mask_index:] # cutting off the first 4 datapoints, this depends on the setup
             print("Before average division")
-            ref = data_to_plot[0].flatten()/av
+            ref = data_to_plot[1].flatten()/av
             print("First division in loop done")
             ref = ref[mask_index:]  # cutting off the first 4 datapoints, this depends on the setup
-            mess = data_to_plot[1].flatten()/av
+            mess = data_to_plot[0].flatten()/av
             mess = mess[mask_index:]  # cutting off the first 4 datapoints, this depends on the setup
             light_level = np.average(ref)* 1e3
             ax.clear()
